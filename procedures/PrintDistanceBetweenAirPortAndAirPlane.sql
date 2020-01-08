@@ -1,10 +1,14 @@
 use rmsb2
 GO 
 
-CREATE PROCEDURE PrintDistanceBetweenAirPortAndAirPlane  @airportID int, @airPlaneId int
---- print distance beetwen single airplane and airport---
+CREATE or ALTER PROCEDURE PrintDistanceBetweenAirPortAndAirPlane  @airportName varchar(100), @airPlaneName varchar(100)
+--- print distance beetwen single airplane and airport in kilometers---
 AS BEGIN
-	    declare @localization1 geometry = (SELECT [Localization] FROM [dbo].[airplanes] WHERE [Id] = @airPlaneId)
-		declare @localization2 geometry = (SELECT [Localization] FROM [dbo].[airports]  WHERE [Id] = @airportID)
-		SELECT @localization1.STDistance(@localization2)
+	    declare @localization1 geometry = (SELECT [Localization] FROM [dbo].[airplanes] WHERE [name] = @airPlaneName)
+		declare @localization2 geometry = (SELECT [Localization] FROM [dbo].[airports]  WHERE [name] = @airportName)
+
+		declare @localization3 geography = [dbo].[ConvertToGeography](@localization1, 4326)
+		declare @localization4 geography = [dbo].[ConvertToGeography](@localization2, 4326)
+
+		SELECT @localization3.STDistance(@localization4) / 1000
 END

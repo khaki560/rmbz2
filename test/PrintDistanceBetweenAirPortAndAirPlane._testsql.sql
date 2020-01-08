@@ -2,9 +2,11 @@ use rmsb2
 GO 
 
 
-exec PrintAirportLocation 168
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Radom airport', @airPlaneName='plane_radom'
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Radom airport', @airPlaneName='plane_between'
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Radom airport', @airPlaneName='plane_lodz'
 
-select localization.ToString() from airports where Id = 13
 
-exec PrintDistanceBetweenAirPortAndAirPlane 168, 13
-exec PrintDistanceBetweenAirPortAndAirPlane 228, 13
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Lodz airport', @airPlaneName='plane_lodz'  
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Lodz airport', @airPlaneName='plane_between'
+exec PrintDistanceBetweenAirPortAndAirPlane  @airportName='Lodz airport', @airPlaneName='plane_radom'  

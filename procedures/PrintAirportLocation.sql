@@ -1,8 +1,8 @@
 use rmsb2
 GO 
 
-CREATE PROCEDURE PrintAirportLocation  @airportID int
+CREATE OR ALTER PROCEDURE PrintAirportLocation  @airportName varchar(100)
 --- print coordinates of airport of specific ID in human readable way---
 AS BEGIN
-	SELECT [name], Localization.ToString() FROM [dbo].[airports] WHERE Id = @airportID
+	SELECT [name], Localization.STY as Lat,localization.STX as lon FROM [dbo].[airports] WHERE [name] = @airportName
 END
