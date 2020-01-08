@@ -4,7 +4,7 @@ GO
 
 --- samolot w lodzi ----
 DELETE FROM airplanes WHERE [name]='plane_radom';
-exec [dbo].[AddPlane] @name='plane_radom', @airplaneCoordinates='51.3840722 21.2074830', @airplaneRoute='51.3840722 21.2074830, 51.7197 19.3906'
+exec [dbo].[AddPlane] @name='plane_radom', @airplaneCoordinates='51.3890,21.2146', @airplaneRoute='51.3840722 21.2074830, 51.7197 19.3906'
 
 --- samolot w radomiu ----
 DELETE FROM airplanes WHERE [name]='plane_lodz';
