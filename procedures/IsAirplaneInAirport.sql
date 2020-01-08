@@ -8,6 +8,6 @@ AS BEGIN
 		declare @localization2 geometry = (SELECT [Localization] FROM [dbo].[airports]  WHERE [Id] = @airportID)
 		IF @localization2.STContains(@localization1) = 1 
 			PRINT 'YES'
-		ELSE
+		ELSE	
 			PRINT 'NO'
 END
