@@ -1,15 +1,16 @@
 use rmsb2
 GO 
 
-CREATE PROCEDURE AddPlane @airPlaneCoordinates varchar(100), @airPlaneRoute varchar(100)
+CREATE OR ALTER  PROCEDURE AddPlane @name varchar(100), @airPlaneCoordinates varchar(100), @airPlaneRoute varchar(100)
 --- This procedure add entry to airports table, to execute this properly You need to put parameters in order---
---- @airPortName='portName', @countryName='contryName', @airPlaneCoordinates='coord1 coord1',---
---- @airPlaneArea='(coord1 coord2, coord3 coord4, ....., coordn, cooordn+1)' first and last coordinates point should be the same---
+--- @name='planeName', , @airPlaneCoordinates='coord1 coord1',---
+--- @airPlaneRoute='(coord1 coord2, coord3 coord4, ....., coordn, cooordn+1)' ---
 AS BEGIN
 BEGIN TRY  
-    insert into [dbo].[airplanes] ([Localization], [route]) 
+    insert into [dbo].[airplanes] ([name], [Localization], [route]) 
 	Values (
-		 [dbo].[CreatePointfrom1Coordinate](@airPlaneCoordinates)
+		 @name
+		,[dbo].[CreatePointfrom1Coordinate](@airPlaneCoordinates)
 		,[dbo].[CreateLine](@airPlaneRoute)
 	)
 END TRY  
